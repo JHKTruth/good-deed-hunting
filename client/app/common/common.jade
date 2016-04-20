@@ -1,0 +1,117 @@
+.modal.fade(id="uDetailModal", tabindex="-1", role="dialog", aria-labelledby="udLabel", aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") &times;
+        .modal-title(id="udLabel") 
+          ul.list-inline.flex-center
+            li
+              img.img-rounded(src="{{uDetail.avatar}}", alt="udAvatar", style="width: 64px; height: 64px;") 
+            li
+              h2.padH10 {{uDetail.name}}
+
+      .modal-body.text-center
+        ul.nav.nav-pills.nav-justified(id="udNavPills")
+          li.active(role="presentation")
+            a(href="#udDts", id="ud-detail-tab", aria-controls="udDetails", data-toggle="tab", role="tab") Details
+          li(role="presentation")
+            a(href="#udGears", id="ud-gears-tab", aria-controls="udAchievements", data-toggle="tab", role="tab") Gears
+          li(role="presentation")
+            a(href="#udDeeds", id="ud-deeds-tab", aria-controls="udDeeds", data-toggle="tab", role="tab") Deeds
+
+        .tab-content.pad10(id="udDetailContent")
+          .tab-pane.fade.in.active(id="udDts", role="tabpanel")
+            .table-responsive
+              table.table
+                tr
+                  td Name
+                  td {{uDetail.name}}
+                tr
+                  td Email
+                  td {{uDetail.email}}
+                tr
+                  td Level
+                  td {{uDetail.lvl}}
+                tr(ng-hide="uDetail._guilds.length < 1")
+                  td Guilds
+                  td 
+                    .dropdown
+                      button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown", aria-expanded="true") Guilds
+                        span.caret
+                      ul.dropdown-menu.dropdown-menu-right(role="menu", ng-repeat='guild in uDetail._guilds')
+                        li(role="presentation")
+                          a(role="menuitem", tabindex="-1", href="#") {{guild.name}}
+
+          .tab-pane.fade(id="udGears", role="tabpanel")
+            .container-fluid Gears
+          .tab-pane.fade(id="udDeeds", role="tabpanel")
+            .container-fluid Deeds
+
+      .modal-footer
+        button(type="button", class="btn btn-default", data-dismiss="modal") Close
+
+.modal.fade(id="gdDetailModal", tabindex="-1", role="dialog", aria-labelledby="gdLabel", aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header.guild-header
+        button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") &times;
+        .modal-title(id="gdLabel") 
+          ul.list-inline.flex-center
+            li
+              img.img-rounded(src="{{gdDetail.avatar}}", alt="gdAvatar", style="width: 64px; height: 64px;") 
+            li
+              h2.padH10 {{gdDetail.name}}
+
+      .modal-body.text-center
+        ul.nav.nav-pills.nav-justified(id="gdNavPills")
+          li.active(role="presentation")
+            a(href="#gdDts", id="gd-detail-tab", aria-controls="gd-details", data-toggle="tab", role="tab") Details
+          li(role="presentation")
+            a(href="#gdLoc", id="gd-location-tab", aria-controls="gd-location", data-toggle="tab", role="tab") Location
+          li(role="presentation")
+            a(href="#gdAchiev", id="gd-achiev-tab", aria-controls="gd-achievements", data-toggle="tab", role="tab") Achievements
+          li(role="presentation")
+            a(href="#gdDeeds", id="gd-deeds-tab", aria-controls="gd-deeds", data-toggle="tab", role="tab") Deeds
+
+        .tab-content.pad10(id="gdDetailContent")
+          .tab-pane.fade.in.active(id="gdDts", role="tabpanel")
+            .table-responsive
+              table.table
+                tr
+                  td Guild Master
+                  td {{gdDetail._masterUserId.name}}
+                tr
+                  td Created
+                  td {{gdDetail.creationTime | date: 'MM/dd/yyyy'}}
+                tr
+                  td Members
+                  td {{gdDetail.memberCount}}
+                tr
+                  td Praises
+                  td {{gdDetail.praises}}
+
+          .tab-pane.fade(id="gdLoc", role="tabpanel")
+            .container-fluid
+              canvas(id="gdGlobe")
+          .tab-pane.fade(id="gdAchiev", role="tabpanel")
+            .container-fluid Achievements
+          .tab-pane.fade(id="gdDeeds", role="tabpanel")
+            .container-fluid Deeds
+
+      .modal-footer
+        button(type="button", class="btn btn-default", data-dismiss="modal") Close
+
+.modal.fade(id="cmErrModal", tabindex="-1", role="dialog", aria-labelledby="cmErrLabel", aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") &times;
+      .modal-body.text-center
+        .alert.alert-danger(id="cmAlert", role="alert")
+          strong Error {{errMsg}}
+
+.hide
+  cavas(id="dataUrl", style="width: 0; height: 0;")

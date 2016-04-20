@@ -1,0 +1,90 @@
+.hide {
+    display: none;
+}
+
+.show-animate {
+    animation-duration: 1s;
+    animation-name: showAnimate;
+}
+
+@keyframes showAnimate {
+    from {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    to {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.text-overflow(@tOverflowParam) {
+    -moz-text-overflow: @tOverflowParam;
+    -webkit-text-overflow: @tOverflowParam;
+    text-overflow: @tOverflowParam;
+}
+
+.linear-gradient(@lgStart, @lgEnd) {
+    background: -moz-linear-gradient(to bottom, @lgEnd, @lgStart);
+    background: -webkit-gradient(linear, left top, left bottom, from(@lgStart), to(@lgEnd));
+    background: -webkit-linear-gradient(to bottom, @lgEnd, @lgStart);
+    background: linear-gradient(to bottom, @lgEnd, @lgStart);
+    -ms-filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{lgStart}', endColorstr='@{lgEnd}')";
+}
+
+.radial-gradient(@pct0, @pct25, @pct50, @pct75, @pct100) {
+    background-image: -moz-radial-gradient(circle closest-side at 40% 50%, @pct0, @pct25 25%, @pct50 50%, @pct75 75%, @pct100);
+    background-image: -webkit-gradient(radial, 40% 50%, 0, 40% 50%, 50, from(@pct0), color-stop(25%, @pct25), color-stop(50%, @pct50), color-stop(75%, @pct75), to(@pct100));
+    background-image: radial-gradient(circle closest-side at 40% 50% , @pct0, @pct25 25%, @pct50 50%, @pct75 75%, @pct100);
+}
+
+.box-shadow(@bShadowParam) {
+    -moz-box-shadow: ~"@{bShadowParam}";
+    -webkit-box-shadow: ~"@{bShadowParam}";
+    box-shadow: ~"@{bShadowParam}";
+}
+
+.transform(@tParam) {
+    -moz-transform: ~"@{tParam}";
+    -webkit-transform: ~"@{tParam}";
+    -o-transform: ~"@{tParam}";
+    -ms-transform: ~"@{tParam}";
+    transform: ~"@{tParam}";
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.pad5 {
+    padding: 5px;
+}
+.pad10 {
+    padding: 10px;
+}
+.padH10 {
+    padding: 0 10px;
+}
+.padH5 {
+    padding: 0 5px;
+}
+.padV5 {
+    padding: 5px 0;
+}
+.margin5 {
+    margin: 5px;
+}
+.marginH5 {
+    margin: 0 5px;
+}
+.marginV5 {
+    margin: 5px 0;
+}
+.pointer {
+    cursor: pointer;
+}

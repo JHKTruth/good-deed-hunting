@@ -1,0 +1,35 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+  .container
+    h2 
+      blockquote(style="border-left: none;")
+        p.lead 'It is not living that matters, but living rightly.'
+        footer
+          cite Socrates
+
+.container-fluid
+  .row
+    .col-xs-12.col-sm-6.col-md-4.col-lg-3(ng-repeat='deed in deeds')
+      .thumbnail.thmbnail-custom
+        div(ng-switch="deed.contentType", ng-click="deedDetail(deed._id)")
+          img.thmb-img-center(ng-switch-when="1", src='{{deed.contentData}}')
+          video(ng-switch-when="2", controls, x-webkit-airplay='allow', tabindex='0')
+            source(src='{{deed.contentData}}')
+          .caption
+          h4.thmb-header {{deed.title}}
+            span.badge.deedPluses {{deed.deedPluses}}
+            .btn-group.pull-right(role="group", ng-show="isThumbable(deed)")
+              a.glyphicon.glyphicon-thumbs-up.thumbsElement(ng-click="thumbsDeed(deed, 1)", href="#")
+              a.glyphicon.glyphicon-thumbs-down.thumbsElement(ng-click="thumbsDeed(deed, -1)", href="#", ng-class="{invisible: deed.deedPluses < 1}")
+          .thmb-content {{deed.desc}}
+          .marginV5
+            ul.item-lists(ng-repeat='user in deed._users')
+              a(style="cursor: default;")
+                cite &#169;
+              li
+                a(ng-click="userDetail(user._id)", href="#")
+                  {{user.name}}
+
+div(ng-include='"app/common/common.html"')
+div(ng-include='"app/common/footer.html"')

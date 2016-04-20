@@ -1,0 +1,29 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+  .table-responsive
+    table.table.table-hover
+      thead
+        tr
+          th Name
+          th Guild Master
+          th Creation Date
+          th Number of Members
+          th(ng-show="isLoggedIn()")
+      tr(ng-repeat='guild in guilds')
+        td
+          a(ng-click="guildDetail(guild._id)", href="#")  {{guild.name}}
+        td
+          a(ng-click="userDetail(guild._masterUserId._id)", href="#") {{guild._masterUserId.name}}
+        td {{guild.creationTime | date: 'MM/dd/yyyy'}}
+        td {{guild.memberCount}}
+        td(ng-show="isLoggedIn()", ng-click='applyGuid(guild._id)')
+          a.btn.btn-primary.disabled(href="#", role="button") Apply to Guild 
+
+.device-xs.visible-xs
+.device-sm.visible-sm
+.device-md.visible-md
+.device-lg.visible-lg
+
+div(ng-include='"app/common/common.html"')
+div(ng-include='"app/common/footer.html"')
